@@ -12,5 +12,12 @@ class ProductoResponse(ProductoBase):
     class Config:
         from_attributes = True
 
+class UsuarioCreate(BaseModel):
+    email: str
+    password: str
 
-
+class UsuarioResponse(BaseModel):
+    id: int
+    email: str
+    class Config:
+        from_attreibutes = True

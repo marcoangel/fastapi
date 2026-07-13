@@ -4,11 +4,11 @@ from sqlalchemy.orm import Session
 from typing import List
 from database import get_db
 from models import ProductoDB
+from models import UsuarioDB
 from schemas import ProductoBase, ProductoResponse
 
 # Creamos el router en lugar de usar @app
 router = APIRouter(prefix="/productos", tags=["Productos"])
-
 
 @router.get("", response_model=List[ProductoResponse])
 def obtener_productos(db: Session = Depends(get_db)):
