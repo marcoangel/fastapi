@@ -11,3 +11,5 @@ app = FastAPI(title="API Profesional Modularizada")
 
 # Incluimos las rutas del archivo independiente
 app.include_router(router)
+
+print("holamundo")
