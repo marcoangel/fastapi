@@ -53,13 +53,14 @@ Sigue estos pasos para levantar el entorno de desarrollo en tu máquina local:
 git clone github@marcoangel/fastapi
 cd fastapi
 
-
+```
 ### 2. Ejecutar
 ```bash
 python main.py
 fastapi dev main.py
-
+```
 ### 3. Probar
  * abrir navegador y entrar a 
-```bash
+```url
 http://127.0.0.1:8000/docs
+```
