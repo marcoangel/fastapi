@@ -61,6 +61,6 @@ fastapi dev main.py
 ```
 ### 3. Probar
  * abrir navegador y entrar a 
-```url
-http://127.0.0.1:8000/docs
+```
+[sitio web](http://127.0.0.1:8000/docs)
 ```
