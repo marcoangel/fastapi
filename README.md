@@ -1,6 +1,6 @@
 # 🚀 API de Gestión de Inventario & Autenticación Segura
 
-Este es un proyecto backend robusto desarrollado en Python utilizando **FastAPI**. Implementa un sistema completo de administración de productos (CRUD) con persistencia de datos en una base de datos relacional y un módulo de seguridad avanzado para el registro e inicio de sesión de usuarios mediante tokens **JWT**.
+Este es un proyecto backend desarrollado en Python utilizando **FastAPI**. Implementa un sistema completo de administración de productos (CRUD) con persistencia de datos en una base de datos relacional y un módulo de seguridad para el registro e inicio de sesión de usuarios mediante tokens **JWT**.
 
 Diseñado bajo estándares de arquitectura limpia, modularización y buenas prácticas exigidas en entornos de desarrollo remoto internacional.
 
@@ -52,3 +52,14 @@ Sigue estos pasos para levantar el entorno de desarrollo en tu máquina local:
 ```bash
 git clone github@marcoangel/fastapi
 cd fastapi
+
+
+### 2. Ejecutar
+```bash
+python main.py
+fastapi dev main.py
+
+### 3. Probar
+ * abrir navegador y entrar a 
+```bash
+http://127.0.0.1:8000/docs
