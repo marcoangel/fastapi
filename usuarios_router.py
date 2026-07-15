@@ -1,4 +1,4 @@
-#usuarios puter
+#usuarios router
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from typing import List
@@ -9,9 +9,15 @@ from passlib.context import CryptContext
 import bcrypt # 🔽 Importamos bcrypt directamente
 import jwt # 🔽 Importamos PyJWT
 from datetime import datetime, timedelta, timezone
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from jwt.exceptions import InvalidTokenError
+
+
 
 SECRET_KEY = "mi_clave_secreta_super_segura_para_el_remoto"
 ALGORITHM = "HS256"
+
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
 
 router = APIRouter(prefix="/auth", tags=["Autenticación"])
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
@@ -40,8 +46,8 @@ def obtenerUsuarios(db: Session = Depends(get_db)):
 
 
 @router.post("/login", response_model=TokenResponse)
-def login(usuario: UsuarioCreate, db: Session = Depends(get_db)):
-    usuario_db = db.query(UsuarioDB).filter(UsuarioDB.email == usuario.email).first()
+def login(usuario: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
+    usuario_db = db.query(UsuarioDB).filter(UsuarioDB.email == usuario.username).first()
     if not usuario_db:
         raise HTTPException(status_code=401, detail="Credenciales inválidas")
     
@@ -56,7 +62,7 @@ def login(usuario: UsuarioCreate, db: Session = Depends(get_db)):
     expiration = datetime.now(timezone.utc) + timedelta(minutes=30)
     payload = {
         "sub": usuario_db.email,
-        "exp": expiration.timestamp()
+        "exp": expiration
     }
     token = jwt.encode(payload, SECRET_KEY, algorithm=ALGORITHM)
     
